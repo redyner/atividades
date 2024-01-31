@@ -1,0 +1,50 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.icon-cell {
+    white-space: nowrap;
+    padding: 5px;
+}
+
+.icon-cell img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.count{
+    font-size: 50px;
+    padding: 2%;
+}
+
+.valor-premio{
+    font-size: 50px;
+}
+
+#limpar{
+    width: "50";
+    height: "50";
+}
+
+.align-right {
+    float: right;
+}
+
+#limpar, .star, .premio, .resgatar-premio{
+    cursor: pointer;
+}
