@@ -1,50 +1,47 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.icon-table{
+    width: 10%;
+    height: 10%;
 }
 
-table, th, td {
-    border: 1px solid black;
+.star-table{
+    width: 10%;
+    height: 10%;
 }
 
-th, td {
-    padding: 10px;
-    text-align: center;
+.reward{
+    width: 10vh;
+    height: 10vh;
 }
 
-th {
-    background-color: #f2f2f2;
+.column{
+    width: 50%;
+    height: 50%;
 }
 
-.icon-cell {
-    white-space: nowrap;
-    padding: 5px;
-}
-
-.icon-cell img {
-    margin-right: 5px;
-    vertical-align: middle;
+.pad{
+    padding: 1%;
 }
 
 .count{
-    font-size: 50px;
-    padding: 2%;
+    font-size: 300%;
+    vertical-align: middle;
 }
 
-.valor-premio{
-    font-size: 50px;
+.container {
+    width: 10vh;
+    height:  10vh;
+    position: relative;
 }
 
-#limpar{
-    width: "50";
-    height: "50";
+.container img{
+    width: 100%;
 }
 
-.align-right {
-    float: right;
-}
-
-#limpar, .star, .premio, .resgatar-premio{
-    cursor: pointer;
+.centro{
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    text-align: center;
+    font-size: 100%;
+    background-image:image('../assets/img/starFilled.png');
 }
