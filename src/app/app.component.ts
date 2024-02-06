@@ -16,23 +16,18 @@ export class AppComponent {
 
   atividades = 
   [
-    {src: '../assets/img/atividades/0.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/1.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/2.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/3.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/4.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/5.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/6.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/7.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/8.png', rating: this.starEmpty},
-    {src: '../assets/img/atividades/9.png', rating: this.starEmpty},
-
+    {src: '../assets/img/atividades/0.png', rating: this.starEmpty}
   ]
 
   constructor(private dialog: MatDialog) { }
 
-  openDialog(): void {
+  openDialog(atividade: any): void {
     const dialogRef = this.dialog.open(AtividadesComponent);
+
+    dialogRef.componentInstance.atividadeSelecionada.subscribe((src: string) => {
+      atividade.src = src;
+      dialogRef.close(); 
+    });
   }
 
   changeRating(atividade: any): void {
@@ -50,9 +45,8 @@ export class AppComponent {
   
   weekday(){
     const hoje = new Date();
-    const diaDaSemana = hoje.getDay(); // Retorna um número de 0 (Domingo) a 6 (Sábado)
+    const diaDaSemana = hoje.getDay();
 
-  // Exemplo de uso
   switch (diaDaSemana) {
     case 0:
       return "Domingo";
@@ -72,5 +66,15 @@ export class AppComponent {
       return "Erro ao obter o dia da semana";
     }
   }
-  
+
+  adicionarAtividade(){
+    this.atividades.push({src: '../assets/img/atividades/0.png', rating: this.starEmpty});
+  }
+
+  removerAtividade(atividade: any): void {
+    const index = this.atividades.indexOf(atividade);
+    if (index !== -1) {
+      this.atividades.splice(index, 1);
+    }
+  }
 }

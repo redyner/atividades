@@ -1,11 +1,11 @@
 .icon-table{
-    width: 10%;
-    height: 10%;
+    width: 10vh;
+    height: 10vh;
 }
 
 .star-table{
-    width: 10%;
-    height: 10%;
+    width: 10vh;
+    height: 10vh;
 }
 
 .reward{
@@ -20,6 +20,10 @@
 
 .pad{
     padding: 1%;
+}
+
+.marg{
+    margin: 1%;
 }
 
 .count{
@@ -39,8 +43,8 @@
 
 .centro{
     position: absolute;
-    left: 35%;
-    top: 43%;
+    left: 45%;
+    top: 35%;
     text-align: center;
     font-size: 100%;
     background-image:image('../assets/img/starFilled.png');
