@@ -4,7 +4,7 @@
       <div class="col pad">
         <img [src]="imagem" (click)="selecionarAtividade(imagem)">
       </div>
-      <div *ngIf="(i + 1) % 4 === 0 && i !== imagens.length - 1" class="w-100"></div>
+      <div *ngIf="(i + 1) % 3 === 0 && i !== imagens.length - 1" class="w-100"></div>
     </ng-container>
   </div>
 </div>
