@@ -12,7 +12,7 @@ export class AppComponent {
   starFilled = '../assets/img/starFilled.png';
   starEmpty = '../assets/img/starEmpty.png';
   count = 0;
-  totalEstrelas = localStorage.getItem('totalEstrelas');
+  totalEstrelas = this.getStars();
   atividades: any[];
 
   constructor(private dialog: MatDialog) {
@@ -42,7 +42,7 @@ export class AppComponent {
       this.count++;
     }
     localStorage.setItem('totalEstrelas', this.count.toString());
-    this.totalEstrelas = localStorage.getItem('totalEstrelas');
+    this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
     this.atualizarAtividadesLocalStorage();
   }
 
@@ -85,7 +85,7 @@ export class AppComponent {
           this.count = parseInt(this.totalEstrelas,10);
         this.count--;
         localStorage.setItem('totalEstrelas', this.count.toString());
-        this.totalEstrelas = localStorage.getItem('totalEstrelas');
+        this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
       }
       this.atualizarAtividadesLocalStorage();
     }
@@ -93,5 +93,12 @@ export class AppComponent {
 
   private atualizarAtividadesLocalStorage(): void {
     localStorage.setItem('atividades', JSON.stringify(this.atividades));
+  }
+  private getStars(){
+    const totalEstrelas = localStorage.getItem('totalEstrelas');
+    if(totalEstrelas)
+      this.count = parseInt(totalEstrelas,10);
+
+    return this.count < 10 ? '0' + totalEstrelas : totalEstrelas;
   }
 }
