@@ -14,10 +14,23 @@ export class AppComponent {
   count = 0;
   totalEstrelas = this.getStars();
   atividades: any[];
+  atividadeDefault = '../assets/img/default.png';
 
   constructor(private dialog: MatDialog) {
     const storedAtividades = localStorage.getItem('atividades');
-    this.atividades = storedAtividades ? JSON.parse(storedAtividades) : [{ src: '../assets/img/atividades/0.png', rating: this.starEmpty }];
+    this.atividades = storedAtividades ? JSON.parse(storedAtividades) : [{ src: this.atividadeDefault, rating: this.starEmpty }];
+    setInterval(() => {
+      const diaDaSemanaAtual = new Date().getDay().toString();
+      if(diaDaSemanaAtual != localStorage.getItem('diaDaSemanda'))
+      {
+        localStorage.setItem('diaDaSemanda', diaDaSemanaAtual);
+        this.atividades = this.atividades.map(atividade => ({
+          src: atividade.src,
+          rating: this.starEmpty
+        }));
+        this.atualizarAtividadesLocalStorage();
+      }
+    }, 1000);
   }
 
   openDialog(atividade: any): void {
@@ -47,23 +60,20 @@ export class AppComponent {
   }
 
   weekday() {
-    const hoje = new Date();
-    const diaDaSemana = hoje.getDay();
-
-    switch (diaDaSemana) {
-      case 0:
+    switch (localStorage.getItem('diaDaSemanda')) {
+      case "0":
         return "Domingo";
-      case 1:
+      case "1":
         return "Segunda-feira";
-      case 2:
+      case "2":
         return "Terça-feira";
-      case 3:
+      case "3":
         return "Quarta-feira";
-      case 4:
+      case "4":
         return "Quinta-feira";
-      case 5:
+      case "5":
         return "Sexta-feira";
-      case 6:
+      case "6":
         return "Sábado";
       default:
         return "Erro ao obter o dia da semana";
@@ -71,7 +81,7 @@ export class AppComponent {
   }
 
   adicionarAtividade() {
-    this.atividades.push({ src: '../assets/img/atividades/0.png', rating: this.starEmpty });
+    this.atividades.push({ src: this.atividadeDefault, rating: this.starEmpty });
     this.atualizarAtividadesLocalStorage();
   }
 
@@ -99,6 +109,6 @@ export class AppComponent {
     if(totalEstrelas)
       this.count = parseInt(totalEstrelas,10);
 
-    return this.count < 10 ? '0' + totalEstrelas : totalEstrelas;
+    return this.count < 10 ? '0' + this.count : totalEstrelas;
   }
 }
