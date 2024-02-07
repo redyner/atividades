@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecompensasComponent } from './recompensas.component';
+import { RecompensaComponent } from './recompensa.component';
 
-describe('RecompensasComponent', () => {
-  let component: RecompensasComponent;
-  let fixture: ComponentFixture<RecompensasComponent>;
+describe('RecompensaComponent', () => {
+  let component: RecompensaComponent;
+  let fixture: ComponentFixture<RecompensaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RecompensasComponent]
+      declarations: [RecompensaComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(RecompensasComponent);
+    fixture = TestBed.createComponent(RecompensaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

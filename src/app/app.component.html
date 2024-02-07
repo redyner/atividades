@@ -1,20 +1,2 @@
-<!-- <router-outlet></router-outlet> -->
-<img src="../assets/img/reward.gif" class="reward rounded float-start pad" alt="reward">
-<div class="container star rounded float-end pad"><img src="../assets/img/starFilled.png"> <div class="contador">{{totalEstrelas}}</div></div>
-<button class="btn btn-primary marg" (click)="adicionarAtividade()">Adicionar Atividade</button> 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col" class="column text-center">Atividade</th>
-            <th scope="col" class="column text-center">{{this.weekday()}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let atividade of atividades">
-            <td class="text-center"><img [src]="atividade.src" class="icon-table" (click)="openDialog(atividade)"></td>
-            <td class="text-center"><img [src]="atividade.rating" class="star-table" (click)="changeRating(atividade)"></td>
-            <td class="text-center"><img src="../assets/img/trash.png" alt="trash" class="icon-table" (click)="removerAtividade(atividade)"></td>
-        </tr>
-    </tbody>
-</table>
+<router-outlet></router-outlet>
     

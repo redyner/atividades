@@ -1,15 +1,15 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-atividades',
-  templateUrl: './atividades.component.html',
-  styleUrls: ['./atividades.component.scss']
+  selector: 'app-lista-atividades',
+  templateUrl: './lista-atividades.component.html',
+  styleUrls: ['./lista-atividades.component.scss']
 })
-export class AtividadesComponent {
+export class ListaAtividadesComponent {
   @Output() atividadeSelecionada = new EventEmitter<string>();
 
   imagens = [
-    '../../assets/img/atividades/0.png',
+    '../../assets/img/default.png',
     '../../assets/img/atividades/1.png',
     '../../assets/img/atividades/2.png',
     '../../assets/img/atividades/3.png',

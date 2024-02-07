@@ -1,0 +1,51 @@
+.icon-table{
+    width: 10vh;
+    height: 10vh;
+}
+
+.star-table{
+    width: 10vh;
+    height: 10vh;
+}
+
+.reward{
+    width: 10vh;
+    height: 10vh;
+}
+
+.column{
+    width: 50%;
+    height: 50%;
+}
+
+.pad{
+    padding: 1%;
+}
+
+.marg{
+    margin: 1%;
+}
+
+.count{
+    font-size: 300%;
+    vertical-align: middle;
+}
+
+.container {
+    width: 10vh;
+    height:  10vh;
+    position: relative;
+}
+
+.container img{
+    width: 100%;
+}
+
+.contador{
+    position: absolute;
+    left: 35%;
+    top: 45%;
+    text-align: center;
+    font-size: 150%;
+    background-image:image('../assets/img/starFilled.png');
+}
