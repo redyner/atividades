@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { RecompensasComponent } from './recompensas/recompensas.component';
 
+
 @NgModule({
   declarations: [
     AtividadesComponent,

@@ -9,10 +9,11 @@
             </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let atividade of atividades">
+            <tr *ngFor="let atividade of atividades">
                 <td class="text-center"><img [src]="atividade.src" class="icon-table" (click)="openDialog(atividade)"></td>
                 <td class="text-center"><img [src]="atividade.rating" class="star-table" (click)="changeRating(atividade)"></td>
                 <td class="text-center"><img src="../assets/img/trash.png" alt="trash" class="icon-table" (click)="removerAtividade(atividade)"></td>
             </tr>
         </tbody>
     </table>
+
