@@ -20,6 +20,7 @@ export class ListaAtividadesComponent {
     '../../assets/img/atividades/9.png',
     '../../assets/img/atividades/10.png',
     '../../assets/img/atividades/11.png',
+    '../../assets/img/atividades/12.png',
   ];
 
   selecionarAtividade(src: string): void {
