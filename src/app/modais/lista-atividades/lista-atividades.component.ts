@@ -9,7 +9,6 @@ export class ListaAtividadesComponent {
   @Output() atividadeSelecionada = new EventEmitter<string>();
 
   imagens = [
-    '../../assets/img/default.png',
     '../../assets/img/atividades/1.png',
     '../../assets/img/atividades/2.png',
     '../../assets/img/atividades/3.png',
