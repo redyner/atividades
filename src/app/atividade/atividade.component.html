@@ -1,4 +1,4 @@
-<img src="../assets/img/reward.gif" class="reward rounded float-start pad" alt="reward">
+<a routerLink="/recompensa"><img src="../assets/img/reward.gif" class="reward rounded float-start pad" alt="reward"></a>
 <div class="container star rounded float-end pad"><img src="../assets/img/starFilled.png"> <div class="contador">{{totalEstrelas}}</div></div>
 <button class="btn btn-primary marg" (click)="adicionarAtividade()">Adicionar Atividade</button> 
 <table class="table">
@@ -6,6 +6,7 @@
         <tr>
             <th scope="col" class="column text-center">Atividade</th>
             <th scope="col" class="column text-center">{{this.weekday()}}</th>
+            <th scope="col" class="column text-center">Remover</th>
         </tr>
     </thead>
     <tbody>

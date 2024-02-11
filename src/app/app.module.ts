@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { RecompensaComponent } from './recompensa/recompensa.component';
 import { ListaRecompensasComponent } from './modais/lista-recompensas/lista-recompensas.component';
 import { AtividadeComponent } from './atividade/atividade.component';
+import { ValorRecompensaComponent } from './modais/valor-recompensa/valor-recompensa.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,13 +20,15 @@ import { AtividadeComponent } from './atividade/atividade.component';
     AppComponent,
     RecompensaComponent,
     ListaRecompensasComponent,
-    AtividadeComponent
+    AtividadeComponent,
+    ValorRecompensaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideAnimationsAsync()

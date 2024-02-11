@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ListaRecompensasComponent } from '../modais/lista-recompensas/lista-recompensas.component';
+import { ValorRecompensaComponent } from '../modais/valor-recompensa/valor-recompensa.component';
 
 @Component({
   selector: 'app-recompensa',
@@ -17,27 +18,22 @@ export class RecompensaComponent {
 
   constructor(private dialog: MatDialog) {
     const storedRecompensas = localStorage.getItem('recompensas');
-    this.recompensas = storedRecompensas ? JSON.parse(storedRecompensas) : [{ src: this.atividadeDefault, rating: this.starEmpty }];
-    setInterval(() => {
-      const diaDaSemanaAtual = new Date().getDay().toString();
-      if(diaDaSemanaAtual != localStorage.getItem('diaDaSemanda'))
-      {
-        localStorage.setItem('diaDaSemanda', diaDaSemanaAtual);
-        this.recompensas = this.recompensas.map(atividade => ({
-          src: atividade.src,
-          rating: this.starEmpty
-        }));
-        this.atualizarRecompensasLocalStorage();
-      }
-    }, 1000);
+    this.recompensas = storedRecompensas ? JSON.parse(storedRecompensas) : [{ src: this.atividadeDefault, valor: 0 }];
   }
 
   openDialog(atividade: any): void {
-    const dialogRef = this.dialog.open(ListaRecompensasComponent);
+    const dialogLista = this.dialog.open(ListaRecompensasComponent);    
 
-    dialogRef.componentInstance.atividadeSelecionada.subscribe((src: string) => {
+    dialogLista.componentInstance.atividadeSelecionada.subscribe((src: string) => {
       atividade.src = src;
-      dialogRef.close();
+      dialogLista.close();
+
+      const dialogValor = this.dialog.open(ValorRecompensaComponent);
+      dialogValor.componentInstance.valorCadastrado.subscribe((valor: number) => {
+      atividade.valor = valor;
+      dialogValor.close();
+      });
+
       this.atualizarRecompensasLocalStorage();
     });
   }
@@ -79,8 +75,8 @@ export class RecompensaComponent {
     }
   }
 
-  adicionarAtividade() {
-    this.recompensas.push({ src: this.atividadeDefault, rating: this.starEmpty });
+  adicionarRecompensa() {
+    this.recompensas.push({ src: this.atividadeDefault, valor: 0 });
     this.atualizarRecompensasLocalStorage();
   }
 
