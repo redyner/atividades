@@ -4,18 +4,18 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col" class="column text-center">Recompensa</th>
-            <th scope="col" class="column text-center">Valor</th>
-            <th scope="col" class="column text-center">Resgatar</th>
-            <th scope="col" class="column text-center">Remover</th>
+            <th scope="col" class="text-center">Recompensa</th>
+            <th scope="col" class="text-center">Valor</th>
+            <th scope="col" class="text-center">Resgatar</th>
+            <th scope="col" class="text-center">Remover</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let recompensa of recompensas">
             <td class="text-center"><img [src]="recompensa.src" class="icon-table" (click)="openDialog(recompensa)"></td>
             <td class="text-center align-middle valor">{{recompensa.valor}}</td>
-            <td class="text-center"><img src="../assets/img/redeem.png" alt="trash" class="icon-table" (click)="removerAtividade(recompensa)"></td>
-            <td class="text-center"><img src="../assets/img/trash.png" alt="trash" class="icon-table" (click)="removerAtividade(recompensa)"></td>
+            <td class="text-center"><img src="../assets/img/redeem.png" alt="trash" class="icon-table" (click)="resgatarRecompensa(recompensa)"></td>
+            <td class="text-center"><img src="../assets/img/trash.png" alt="trash" class="icon-table" (click)="removerRecompensa(recompensa)"></td>
         </tr>
     </tbody>
 </table>

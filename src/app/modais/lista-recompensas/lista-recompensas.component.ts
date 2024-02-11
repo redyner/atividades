@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './lista-recompensas.component.scss'
 })
 export class ListaRecompensasComponent {
-  @Output() atividadeSelecionada = new EventEmitter<string>();
+  @Output() recompensaSelecionada = new EventEmitter<string>();
 
   imagens = [
     '../../assets/img/recompensas/1.png',
@@ -17,7 +17,7 @@ export class ListaRecompensasComponent {
     '../../assets/img/recompensas/6.png',
   ];
 
-  selecionarAtividade(src: string): void {
-    this.atividadeSelecionada.emit(src);
+  selecionarRecompensa(src: string): void {
+    this.recompensaSelecionada.emit(src);
   }
 }

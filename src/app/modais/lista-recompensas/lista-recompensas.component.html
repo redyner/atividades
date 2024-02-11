@@ -2,7 +2,7 @@
     <div class="row">
       <ng-container *ngFor="let imagem of imagens; let i = index">
         <div class="col pad">
-          <img [src]="imagem" (click)="selecionarAtividade(imagem)">
+          <img [src]="imagem" (click)="selecionarRecompensa(imagem)">
         </div>
         <div *ngIf="(i + 1) % 3 === 0 && i !== imagens.length - 1" class="w-100"></div>
       </ng-container>

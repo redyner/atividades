@@ -11,87 +11,41 @@ import { ValorRecompensaComponent } from '../modais/valor-recompensa/valor-recom
 export class RecompensaComponent {
   starFilled = '../assets/img/starFilled.png';
   starEmpty = '../assets/img/starEmpty.png';
-  count = 0;
+  countStars = 0;
   totalEstrelas = this.getStars();
   recompensas: any[];
-  atividadeDefault = '../assets/img/default.png';
+  recompensaDefault = '../assets/img/default.png';
 
   constructor(private dialog: MatDialog) {
     const storedRecompensas = localStorage.getItem('recompensas');
-    this.recompensas = storedRecompensas ? JSON.parse(storedRecompensas) : [{ src: this.atividadeDefault, valor: 0 }];
+    this.recompensas = storedRecompensas ? JSON.parse(storedRecompensas) : [{ src: this.recompensaDefault, valor: 0 }];
   }
 
-  openDialog(atividade: any): void {
+  openDialog(recompensa: any): void {
     const dialogLista = this.dialog.open(ListaRecompensasComponent);    
 
-    dialogLista.componentInstance.atividadeSelecionada.subscribe((src: string) => {
-      atividade.src = src;
+    dialogLista.componentInstance.recompensaSelecionada.subscribe((src: string) => {
+      recompensa.src = src;
       dialogLista.close();
 
       const dialogValor = this.dialog.open(ValorRecompensaComponent);
       dialogValor.componentInstance.valorCadastrado.subscribe((valor: number) => {
-      atividade.valor = valor;
+      recompensa.valor = valor;
       dialogValor.close();
-      });
-
       this.atualizarRecompensasLocalStorage();
+      });      
     });
   }
 
-  changeRating(atividade: any): void {
-    if(this.totalEstrelas)
-      this.count = parseInt(this.totalEstrelas,10);
-
-    if (atividade.rating === this.starFilled) {
-      atividade.rating = this.starEmpty;
-      this.count--;
-    } else {
-      atividade.rating = this.starFilled;
-      this.count++;
-    }
-    localStorage.setItem('totalEstrelas', this.count.toString());
-    this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
-    this.atualizarRecompensasLocalStorage();
-  }
-
-  weekday() {
-    switch (localStorage.getItem('diaDaSemanda')) {
-      case "0":
-        return "Domingo";
-      case "1":
-        return "Segunda-feira";
-      case "2":
-        return "Terça-feira";
-      case "3":
-        return "Quarta-feira";
-      case "4":
-        return "Quinta-feira";
-      case "5":
-        return "Sexta-feira";
-      case "6":
-        return "Sábado";
-      default:
-        return "Erro ao obter o dia da semana";
-    }
-  }
-
   adicionarRecompensa() {
-    this.recompensas.push({ src: this.atividadeDefault, valor: 0 });
+    this.recompensas.push({ src: this.recompensaDefault, valor: 0 });
     this.atualizarRecompensasLocalStorage();
   }
 
-  removerAtividade(atividade: any): void {
-    const index = this.recompensas.indexOf(atividade);
+  removerRecompensa(recompensa: any): void {
+    const index = this.recompensas.indexOf(recompensa);
     if (index !== -1) {
       this.recompensas.splice(index, 1);
-      if(atividade.rating == this.starFilled)
-      {
-        if(this.totalEstrelas)
-          this.count = parseInt(this.totalEstrelas,10);
-        this.count--;
-        localStorage.setItem('totalEstrelas', this.count.toString());
-        this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
-      }
       this.atualizarRecompensasLocalStorage();
     }
   }
@@ -99,11 +53,23 @@ export class RecompensaComponent {
   private atualizarRecompensasLocalStorage(): void {
     localStorage.setItem('recompensas', JSON.stringify(this.recompensas));
   }
+
   private getStars(){
     const totalEstrelas = localStorage.getItem('totalEstrelas');
     if(totalEstrelas)
-      this.count = parseInt(totalEstrelas,10);
+      this.countStars = parseInt(totalEstrelas,10);
 
-    return this.count < 10 ? '0' + this.count : totalEstrelas;
+    return this.countStars < 10 ? '0' + this.countStars : totalEstrelas;
+  }
+
+  resgatarRecompensa(recompensa: any){
+    if (recompensa.valor <= this.countStars) {
+      this.countStars = this.countStars - recompensa.valor;
+        localStorage.setItem('totalEstrelas', (this.countStars).toString());
+        this.totalEstrelas = this.getStars();
+    }
+    else {
+      alert("Você não possui pontos suficientes para resgatar este prêmio.");
+  }
   }
 }

@@ -10,7 +10,7 @@ import { ListaAtividadesComponent } from '../modais/lista-atividades/lista-ativi
 export class AtividadeComponent {
   starFilled = '../assets/img/starFilled.png';
   starEmpty = '../assets/img/starEmpty.png';
-  count = 0;
+  countStars = 0;
   totalEstrelas = this.getStars();
   atividades: any[];
   atividadeDefault = '../assets/img/default.png';
@@ -44,17 +44,17 @@ export class AtividadeComponent {
 
   changeRating(atividade: any): void {
     if(this.totalEstrelas)
-      this.count = parseInt(this.totalEstrelas,10);
+      this.countStars = parseInt(this.totalEstrelas,10);
 
     if (atividade.rating === this.starFilled) {
       atividade.rating = this.starEmpty;
-      this.count--;
+      this.countStars--;
     } else {
       atividade.rating = this.starFilled;
-      this.count++;
+      this.countStars++;
     }
-    localStorage.setItem('totalEstrelas', this.count.toString());
-    this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
+    localStorage.setItem('totalEstrelas', this.countStars.toString());
+    this.totalEstrelas = this.countStars < 10 && this.countStars >= 0 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
     this.atualizarAtividadesLocalStorage();
   }
 
@@ -91,10 +91,10 @@ export class AtividadeComponent {
       if(atividade.rating == this.starFilled)
       {
         if(this.totalEstrelas)
-          this.count = parseInt(this.totalEstrelas,10);
-        this.count--;
-        localStorage.setItem('totalEstrelas', this.count.toString());
-        this.totalEstrelas = this.count < 10 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
+          this.countStars = parseInt(this.totalEstrelas,10);
+        this.countStars--;
+        localStorage.setItem('totalEstrelas', this.countStars.toString());
+        this.totalEstrelas = this.countStars < 10 && this.countStars >= 0 ? '0' + localStorage.getItem('totalEstrelas') : localStorage.getItem('totalEstrelas');
       }
       this.atualizarAtividadesLocalStorage();
     }
@@ -106,8 +106,8 @@ export class AtividadeComponent {
   private getStars(){
     const totalEstrelas = localStorage.getItem('totalEstrelas');
     if(totalEstrelas)
-      this.count = parseInt(totalEstrelas,10);
+      this.countStars = parseInt(totalEstrelas,10);
 
-    return this.count < 10 ? '0' + this.count : totalEstrelas;
+    return this.countStars < 10 ? '0' + this.countStars : totalEstrelas;
   }
 }
